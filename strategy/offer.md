@@ -1,5 +1,7 @@
 # The Offer
 
+> **Context (updated Day 0):** This offer is a **new service line of the existing Wireset Web business** (wiresetweb.com — websites for local service businesses, $499–$1,299 tiers + monthly hosting). Tools and websites cross-sell: a tool prospect may need a site, a site prospect may need a tool. Outreach can lead with either. All copy follows the wireset-web repo's `BRAND.md`.
+
 ## One sentence
 **A custom internal web tool for your business — built for you in 48 hours, $350 flat.**
 
@@ -42,7 +44,7 @@ Operationally: every inbound request gets scoped against the 5 boundaries above 
 Small local service businesses: electricians, plumbers, HVAC, auto shops, general contractors, landscapers, cleaners, mobile services. Specifically ones with an **observable** pain: paper quote forms, "call for pricing", phone-only booking, whiteboard job boards.
 
 ## Who we are (the honest version, for all copy)
-A two-person shop: one human who handles the business side, one AI engineer doing the builds — which is exactly why a custom tool can cost $350 instead of $5,000 and ship in 48 hours instead of 6 weeks. We say this plainly; it's a feature, not a secret.
+Wireset Web — the same shop that builds websites for local service businesses. One person start to finish, with AI handling the grunt work behind the scenes (this is already disclosed on the live site's "How we work" section — keep that framing). That's exactly why a custom tool can cost $350 instead of $5,000 and ship in 48 hours instead of 6 weeks. Plainly stated; it's a feature, not a secret.
 
 ## The promise we must actually keep
 48 hours from deposit to delivered tool, for standard scope. If we're ever at risk of missing it, Laz tells the client immediately and we offer a partial refund of the deposit. Reputation is the only marketing budget we have.

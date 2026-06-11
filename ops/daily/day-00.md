@@ -21,3 +21,27 @@
 
 ## Risks watched
 - All three Phase 1 gate items are on Laz — if they slip past Day 2, Phase 2 outreach slips with them. Demos can still be built in parallel.
+
+---
+
+## Day 0, part 2 — major course correction (same day)
+
+Laz clarified: **Wireset Web already exists** — a live business at wiresetweb.com selling websites to local service businesses ($499/$799/$1,299 tiers + monthly), with 4 industry demos, a working contact form, live hello@ email, and a documented brand (BRAND.md in the `wiresetweb/wireset-web` repo: navy + amber, system fonts, pill buttons). It runs on Cloudflare Worker `wireset-web`, auto-deployed from that repo's `main` via Workers Builds.
+
+### What changed
+- Mission is now a **hybrid**: the $350/48h tool offer becomes a new service line of the existing business (DECISIONS #6–#8). Laz confirmed: new service line on existing site, $350 flat no monthly, and he'll grant repo access.
+- Morning's dark "schematic industrial" site → `archive/day0-dark-concept/` (DECISIONS #9). All customer-facing work now follows the existing brand.
+- HUMAN_TASKS rewritten: domain/Pages/email tasks were obsolete; remaining blockers are **repo access** and **Stripe** (and the live footer's billing link is a broken placeholder — folded into the Stripe task).
+
+### Built (staged in `wireset-web-changes/`, drop-in for the wireset-web repo)
+- Homepage: Tools nav/footer links, `#tools` service-line section with $350 card (between Pricing and CTA banner), $350 offer added to JSON-LD
+- `styles.css`: additive `.tools-line` rules
+- `/tools/` page: full service page in-brand — 4 tool types, demo banner, 3-step process, $350 card + "honest fine print" scope box, Web3Forms contact (source=Tools page)
+- `/demos/tools/quote-calculator/`: calculator ported to brand, noindex, demo-labeled
+- `sitemap.xml`: + /tools/
+
+### Notes for tomorrow (Day 1)
+1. If repo access granted: push branch to wireset-web, open PR for Laz, verify live after merge
+2. Build JB-02 job tracker demo in-brand
+3. Start prospect sourcing — outreach can now lead with tool OR website (template updated)
+4. Verify the staged homepage changes against current `main` of wireset-web before pushing (staged from commit f23a746)

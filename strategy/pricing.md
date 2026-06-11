@@ -1,6 +1,16 @@
 # Pricing
 
-## Current price points
+## The full Wireset Web menu (websites pre-existed; tools are the new line)
+| Line | Tier | Price | Terms |
+|------|------|-------|-------|
+| Website | Tier 1 — Brochure Site | $499 build + $49/mo | Pre-existing |
+| Website | Tier 2 — Lead Gen Site | $799 build + $79/mo | Pre-existing |
+| Website | Tier 3 — Full Lead Machine | $1,299 build + $129/mo | Pre-existing |
+| **Tool** | Standard tool | **$350 flat, no monthly** | 50% deposit / 50% on delivery (DECISIONS #8) |
+
+Any sale from either line counts toward the $1,000 / 14-day goal. A single Tier 2 website ≈ 2.3 tools.
+
+## Tool price points
 | Tier | Price | Terms | What |
 |------|-------|-------|------|
 | Standard tool | **$350 flat** | 50% deposit / 50% on delivery | Single-purpose tool within the 5 scope boundaries (see offer.md) |

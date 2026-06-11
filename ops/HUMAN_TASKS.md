@@ -2,30 +2,26 @@
 
 Format per task: what, why, exact steps, what to paste back. Credentials go in `.env` (gitignored), never committed.
 
+> **2026-06-11 correction:** the original three Day-0 tasks (Cloudflare Pages setup, email routing, and parts of the Stripe task) were written before we knew wiresetweb.com was already live with working email. They're replaced by the two below.
+
 ---
 
-## 3. Pick the contact email for the site — BLOCKING (cheap, do first)
-**Why:** The landing page and outreach templates currently use the placeholder `hello@wiresetweb.com`. Every email we send and every site visit needs a real reply address.
+## 2. Stripe: payment links + fix the broken footer billing link — BLOCKING (for taking money)
+**Why:** We collect 50% of $350 ($175) before building any client tool. Also, the live site's footer "Client billing" link is a literal placeholder (`https://billing.stripe.com/p/login/REPLACE_WITH_STRIPE_PORTAL_URL`) — it 404s for anyone who clicks it today.
 **Steps:**
-1. Decide the address. Cheapest good option: Cloudflare Email Routing (free) — in the Cloudflare dashboard for wiresetweb.com, go to **Email → Email Routing**, create `hello@wiresetweb.com`, and forward it to lazaroallanes@gmail.com.
-2. Send yourself a test email to confirm forwarding works.
-**Paste back:** Confirm in this file: "Email routing live, hello@wiresetweb.com → my gmail" (or tell me the different address you chose so I update the site and templates).
+1. Create/log into Stripe (sole proprietor is fine).
+2. Products → add "Wireset Web — Custom Tool (50% deposit)" at **$175 one-time** → create a **Payment Link**. Repeat for "(final 50%)" at $175.
+3. Customer portal: Settings → Billing → Customer portal → activate, and copy the portal login URL.
+**Paste back:** The two payment-link URLs and the portal URL here (public URLs, safe to commit). I'll wire the portal URL into the footer with the rest of the staged changes.
 
-## 2. Stripe account + $175 payment link — BLOCKING (Phase 1 gate)
-**Why:** We collect 50% of $350 ($175) upfront before building anything for a client. No payment link = no revenue.
-**Steps:**
-1. Create a Stripe account at stripe.com (sole proprietor / individual is fine to start).
-2. Products → Add product: name "Wireset Web — Custom Tool (50% deposit)", price **$175 one-time**.
-3. Create a **Payment Link** for it, and a second product/link at **$175** named "...(final 50%)". Two identical-price links keeps bookkeeping clean.
-4. Optional but useful: a third link at $350 "paid in full".
-**Paste back:** The payment link URLs here (they're public URLs, safe to commit). Anything secret (API keys — not needed yet) goes in `.env`.
+## 1. Add the `wiresetweb/wireset-web` repo to this session — BLOCKING (everything ships through this)
+**Why:** The new Tools service line is fully built and staged in `wireset-web-changes/`, but my GitHub write access is currently limited to this repo. Once wireset-web is added, I push a review branch there; you merge; Workers Builds auto-deploys it to wiresetweb.com.
+**Steps:** In the Claude session/environment settings where you manage repository access (where Fable-Money-Test was granted), add `wiresetweb/wireset-web` too, then tell me "repo added" in chat or here.
+**Paste back:** Just confirm it's added. Then my next steps are automatic: branch → apply staged files → you review the PR → merge → verify live.
 
-## 1. Connect `site/` to Cloudflare Pages on wiresetweb.com — BLOCKING (Phase 1 gate)
-**Why:** Gate to Phase 2 is the site live on the domain. The landing page is built and committed at `site/index.html`; demos live at `site/demos/`.
-**Steps:**
-1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**.
-2. Pick this GitHub repo (`wiresetweb/Fable-Money-Test`). If Cloudflare asks for repo access, grant it for this repo only.
-3. Build settings: Framework preset **None**, build command **(leave empty)**, build output directory **`site`**. ⚠️ Must be `site`, NOT the repo root — the root contains our internal strategy docs and deploying it would publish them. Production branch: the branch I tell you is current (right now: `claude/wire-set-web-domain-fspbaz`; we'll move to `main` once you've reviewed).
-4. After the first deploy, go to the Pages project → **Custom domains → Add** → `wiresetweb.com` (and `www.wiresetweb.com`). Cloudflare auto-creates the DNS records since the zone is already there.
-5. Visit https://wiresetweb.com — you should see the Wireset Web landing page, and https://wiresetweb.com/demos/quote-calculator/ should show the demo. Check both on your phone too.
-**Paste back:** Confirm "site live at wiresetweb.com" here, plus anything that looked broken on your phone.
+---
+
+## Completed / obsolete
+- ~~Buy domain~~ — already owned (pre-existing business)
+- ~~Cloudflare Pages setup~~ — site already live via Worker `wireset-web` + Workers Builds
+- ~~Email routing for hello@wiresetweb.com~~ — already live (it's on the site today)
