@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instant Quote — Hartline Electric (Demo) · by Wireset Web</title>
+<meta name="description" content="Live demo of a custom instant quote calculator built by Wireset Web. Fictional business, real working tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1013;--bg2:#13161b;--panel:#171b21;--line:#262c35;
+  --ink:#e8e6df;--ink-dim:#9aa0a8;--amber:#ffb000;--amber-hot:#ffd35c;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;--disp:'Archivo',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--amber);color:#111}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono)}
+
+.demo-banner{
+  background:repeating-linear-gradient(-45deg,rgba(255,176,0,.12),rgba(255,176,0,.12) 12px,transparent 12px,transparent 24px);
+  border-bottom:1px solid var(--amber);
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--amber);
+  text-align:center;padding:9px 16px;
+}
+.demo-banner a{color:var(--amber-hot)}
+
+header.site{border-bottom:1px solid var(--line);background:var(--bg2)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.biz{display:flex;align-items:center;gap:11px}
+.bolt{width:10px;height:10px;background:var(--amber);border-radius:50%;box-shadow:0 0 12px 2px rgba(255,176,0,.7)}
+.biz b{font-weight:900;font-stretch:88%;font-size:18px;letter-spacing:.03em;text-transform:uppercase}
+.biz small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);letter-spacing:.12em}
+header.site .phone{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);letter-spacing:.05em}
+
+.hero{padding:42px 0 8px}
+.hero h1{font-weight:900;font-stretch:80%;text-transform:uppercase;font-size:clamp(30px,6vw,52px);line-height:1}
+.hero h1 span{color:var(--amber)}
+.hero p{color:var(--ink-dim);margin-top:12px;max-width:560px}
+
+.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;padding:34px 0 70px;align-items:start}
+@media(max-width:840px){.layout{grid-template-columns:1fr}}
+
+.cat{margin-bottom:26px}
+.cat h2{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--amber);
+  text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:2px;
+  display:flex;justify-content:space-between;
+}
+.cat h2 small{color:var(--ink-dim);letter-spacing:.1em}
+.svc{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:15px 4px;border-bottom:1px solid var(--line);
+}
+.svc-info b{font-weight:700;font-stretch:92%;font-size:16px}
+.svc-info small{display:block;color:var(--ink-dim);font-size:13px}
+.svc-price{font-family:var(--mono);font-size:13px;color:var(--ink-dim);white-space:nowrap}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);flex-shrink:0}
+.stepper button{
+  width:38px;height:38px;background:none;border:none;color:var(--ink);font-size:19px;
+  cursor:pointer;font-family:var(--mono);transition:background .15s,color .15s;
+}
+.stepper button:hover{background:var(--amber);color:#111}
+.stepper .qty{
+  width:38px;text-align:center;font-family:var(--mono);font-size:15px;
+  border-left:1px solid var(--line);border-right:1px solid var(--line);line-height:38px;
+}
+.svc.active .svc-info b{color:var(--amber-hot)}
+.svc.active .qty{color:var(--amber);font-weight:600}
+
+.quote{
+  position:sticky;top:18px;border:1px solid var(--line);background:var(--panel);
+}
+.quote-head{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ink-dim);
+  padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;
+}
+.quote-head .dot{color:var(--amber)}
+#lines{min-height:70px;max-height:300px;overflow:auto}
+.line{display:flex;justify-content:space-between;gap:10px;padding:11px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.line .nm{color:var(--ink)}
+.line .nm small{color:var(--ink-dim);font-family:var(--mono);font-size:11.5px}
+.line .amt{font-family:var(--mono);color:var(--ink-dim);white-space:nowrap}
+.empty{padding:26px 20px;color:var(--ink-dim);font-size:14px;font-style:italic}
+.total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:18px 20px;border-bottom:1px solid var(--line);
+}
+.total .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--ink-dim)}
+.total .val{font-weight:900;font-stretch:80%;font-size:34px;color:var(--amber)}
+.total .val small{font-size:15px;color:var(--ink-dim);font-weight:600}
+.fine{padding:12px 20px;font-size:12px;color:var(--ink-dim);border-bottom:1px solid var(--line)}
+.send{padding:18px 20px;display:grid;gap:10px}
+.send input,.send textarea{
+  width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);
+  font-family:var(--mono);font-size:13.5px;padding:11px 12px;outline:none;resize:vertical;
+}
+.send input:focus,.send textarea:focus{border-color:var(--amber)}
+.send button{
+  background:var(--amber);color:#15110a;border:none;padding:15px;cursor:pointer;
+  font-family:var(--mono);font-size:13.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+  transition:transform .15s,box-shadow .15s;
+}
+.send button:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(255,176,0,.35)}
+.send button:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+.result{
+  display:none;border:1px solid var(--amber);background:var(--bg2);
+  padding:22px;margin:0 20px 20px;font-family:var(--mono);font-size:13px;
+  white-space:pre-wrap;color:var(--ink);
+}
+.result.show{display:block}
+.result-note{display:none;padding:0 20px 18px;font-size:13px;color:var(--amber)}
+.result-note.show{display:block}
+
+footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">⚠ DEMO — "Hartline Electric" is fictional and all prices are sample data. A real working example by <a href="../../">Wireset Web</a>: yours would have your services &amp; prices.</div>
+
+<header class="site">
+  <div class="wrap">
+    <div class="biz">
+      <span class="bolt"></span>
+      <div><b>Hartline Electric</b><small>LICENSED &amp; INSURED · DEMO CO.</small></div>
+    </div>
+    <span class="phone">(555) 014-0220</span>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <h1>Get your price.<br><span>Right now.</span></h1>
+  <p>Pick what you need below — your estimate builds itself. Send it to us as a job request and we'll confirm a firm price and a date, usually same day.</p>
+</div>
+
+<div class="wrap layout">
+  <div id="catalog"></div>
+
+  <aside class="quote">
+    <div class="quote-head"><span>YOUR ESTIMATE</span><span class="dot">● LIVE</span></div>
+    <div id="lines"><div class="empty">Nothing selected yet — pick a service on the left.</div></div>
+    <div class="total"><span class="lbl">ESTIMATED TOTAL</span><span class="val" id="total">$0</span></div>
+    <div class="fine">Ballpark estimate from standard rates. Final firm price confirmed after we see the job — most estimates hold within ±10%.</div>
+    <div class="send">
+      <input id="cname" type="text" placeholder="Your name" autocomplete="name">
+      <input id="cphone" type="tel" placeholder="Phone or email" autocomplete="tel">
+      <textarea id="cnotes" rows="2" placeholder="Address / anything we should know (optional)"></textarea>
+      <button id="sendBtn" disabled>Send job request →</button>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="result-note" id="resultNote">✓ In the real version this lands in the shop's inbox &amp; phone instantly. Copy above to share.</div>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>DEMO UNIT QT-01 · BUILT IN UNDER 48 HOURS</span>
+    <span>WANT THIS FOR YOUR BUSINESS? → <a href="../../">WIRESETWEB.COM</a></span>
+  </div>
+</footer>
+
+<script>
+const CATALOG=[
+  {cat:"Panels & Service",code:"PNL",items:[
+    {id:"p200",name:"Panel upgrade — 200A",desc:"Full swap, permit & inspection included",price:2400,unit:"job",max:1},
+    {id:"p100",name:"Panel upgrade — 100A",desc:"Older homes, permit included",price:1700,unit:"job",max:1},
+    {id:"surge",name:"Whole-home surge protector",desc:"Installed at the panel",price:340,unit:"unit",max:2},
+  ]},
+  {cat:"Outlets & Switches",code:"OUT",items:[
+    {id:"outlet",name:"New outlet install",desc:"Standard 15/20A, per outlet",price:130,unit:"outlet",max:20},
+    {id:"gfci",name:"GFCI outlet (kitchen/bath)",desc:"Code-required wet locations",price:165,unit:"outlet",max:20},
+    {id:"dimmer",name:"Switch → dimmer swap",desc:"Per switch, LED-compatible",price:95,unit:"switch",max:20},
+  ]},
+  {cat:"EV & Big Loads",code:"EVL",items:[
+    {id:"ev",name:"EV charger circuit — 50A",desc:"NEMA 14-50 or hardwired, permit incl.",price:850,unit:"job",max:2},
+    {id:"hottub",name:"Hot tub / spa circuit",desc:"GFCI-protected 240V run",price:780,unit:"job",max:2},
+    {id:"range",name:"Range / dryer circuit",desc:"New 240V appliance circuit",price:420,unit:"job",max:3},
+  ]},
+  {cat:"Lighting",code:"LGT",items:[
+    {id:"recessed",name:"Recessed light (can)",desc:"Per fixture, incl. fixture",price:185,unit:"fixture",max:30},
+    {id:"fan",name:"Ceiling fan install",desc:"Existing box; bracing +$60 if needed",price:240,unit:"fan",max:10},
+    {id:"exterior",name:"Exterior security light",desc:"Motion-sensor, per fixture",price:210,unit:"fixture",max:10},
+  ]},
+  {cat:"Service Calls",code:"SVC",items:[
+    {id:"diag",name:"Troubleshooting visit",desc:"First hour; covers most fixes",price:150,unit:"visit",max:1},
+    {id:"smoke",name:"Smoke/CO detector (hardwired)",desc:"Per detector, code-compliant",price:110,unit:"unit",max:12},
+  ]},
+];
+const state={};
+const $=s=>document.querySelector(s);
+const fmt=n=>"$"+n.toLocaleString("en-US");
+
+function render(){
+  $("#catalog").innerHTML=CATALOG.map(c=>`
+    <div class="cat">
+      <h2><span>${c.cat}</span><small>REF ${c.code}</small></h2>
+      ${c.items.map(i=>{
+        const q=state[i.id]||0;
+        return `<div class="svc ${q?'active':''}" data-id="${i.id}">
+          <div class="svc-info"><b>${i.name}</b><small>${i.desc}</small></div>
+          <span class="svc-price">${fmt(i.price)}/${i.unit}</span>
+          <div class="stepper">
+            <button data-d="-1" aria-label="remove">−</button>
+            <span class="qty">${q}</span>
+            <button data-d="1" aria-label="add">+</button>
+          </div>
+        </div>`}).join("")}
+    </div>`).join("");
+  renderQuote();
+}
+function item(id){for(const c of CATALOG){const f=c.items.find(i=>i.id===id);if(f)return f}}
+function renderQuote(){
+  const picked=Object.entries(state).filter(([,q])=>q>0);
+  const lines=$("#lines");
+  if(!picked.length){lines.innerHTML='<div class="empty">Nothing selected yet — pick a service on the left.</div>';}
+  else{
+    lines.innerHTML=picked.map(([id,q])=>{
+      const i=item(id);
+      return `<div class="line"><span class="nm">${i.name} <small>× ${q}</small></span><span class="amt">${fmt(i.price*q)}</span></div>`;
+    }).join("");
+  }
+  const total=picked.reduce((s,[id,q])=>s+item(id).price*q,0);
+  $("#total").innerHTML=total?fmt(total):"$0";
+  $("#sendBtn").disabled=!total;
+}
+document.addEventListener("click",e=>{
+  const btn=e.target.closest(".stepper button");
+  if(btn){
+    const id=btn.closest(".svc").dataset.id,i=item(id);
+    state[id]=Math.min(i.max,Math.max(0,(state[id]||0)+ +btn.dataset.d));
+    render();
+  }
+});
+$("#sendBtn").addEventListener("click",()=>{
+  const picked=Object.entries(state).filter(([,q])=>q>0);
+  const total=picked.reduce((s,[id,q])=>s+item(id).price*q,0);
+  const name=$("#cname").value.trim()||"(name not given)";
+  const contact=$("#cphone").value.trim()||"(contact not given)";
+  const notes=$("#cnotes").value.trim();
+  const stamp=new Date().toLocaleString("en-US",{dateStyle:"medium",timeStyle:"short"});
+  $("#result").textContent=
+`━━ JOB REQUEST · HARTLINE ELECTRIC (DEMO) ━━
+${stamp}
+
+CUSTOMER:  ${name}
+CONTACT:   ${contact}${notes?`
+NOTES:     ${notes}`:""}
+
+${picked.map(([id,q])=>{const i=item(id);return `  ${String(q).padStart(2)} × ${i.name.padEnd(32)} ${fmt(i.price*q)}`}).join("\n")}
+  ${"".padEnd(37)}─────────
+  ESTIMATED TOTAL ${" ".repeat(21)}${fmt(total)}
+
+Ballpark from standard rates — firm price after walkthrough.`;
+  $("#result").classList.add("show");
+  $("#resultNote").classList.add("show");
+  $("#result").scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+render();
+</script>
+</body>
+</html>
