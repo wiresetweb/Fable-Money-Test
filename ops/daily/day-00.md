@@ -45,3 +45,31 @@ Laz clarified: **Wireset Web already exists** — a live business at wiresetweb.
 2. Build JB-02 job tracker demo in-brand
 3. Start prospect sourcing — outreach can now lead with tool OR website (template updated)
 4. Verify the staged homepage changes against current `main` of wireset-web before pushing (staged from commit f23a746)
+
+---
+
+## Day 0, part 3 — repo access granted, site transformed, blog launched, ad plan written
+
+Laz granted the `wiresetweb/wireset-web` repo to the session. Everything staged shipped, plus a lot more, all merged to `main` and auto-deployed:
+
+- **PR #5** — Tools service line live (homepage section, `/tools/` page, quote-calculator demo, JSON-LD). Laz provided the **$175 Stripe deposit link**; wired into `/tools/` Step 2.
+- **PR #6** — Full site overhaul: removed 2 live broken links (dead `/portfolio/` CTA, placeholder billing URL), optimized ~28 MB of images (homepage 10.7 MB → 284 KB), added "Under the hood" / "How it works" / FAQ sections, richer schema, branded OG images.
+- **PR #7** — Interactive layer: signal-network hero canvas, live "loaded in X ms" badge, 3D card tilt, self-drawing logo (all reduced-motion-safe, vanilla JS, CSP-clean).
+- **PR #8 / #9** — Blog launched: `/blog/` + **14 posts** (tiers 1–4: speed/SEO, local SEO, websites, reviews, 4 trade-specific linking demos, tools), reusable article template, BlogPosting/Breadcrumb schema, branded OG images, sitemap → 17 URLs. Hero speed badge links to the flagship post.
+- **Ad plan written** — `strategy/ad-plan.md`: $100 staged Meta test, tool-as-wedge, HVAC/electrical/plumbing, full funnel + gates + persona. `outreach/templates/ad-lead-followup.md` (auto-ack + 5-email nurture). Starter creatives in `strategy/ads/`. Logged as DECISION #10.
+
+## Decisions logged
+#10 — paid-ad strategy (Meta, tool-as-wedge, staged $100, gated).
+
+## HUMAN_TASKS state
+- ✅ #1 (repo access) done · ✅ deposit link done
+- ⏳ #2 — final-50% Stripe link + customer-portal URL still needed
+- 🆕 #3 — create Meta ad account + launch the $35 test (BLOCKING for paid ads)
+
+## What's next (Day 1)
+1. Laz creates the Meta ad account → I hand over copy-paste campaign + creatives; build UTM field + (optional) `/go/quote-tool/` landing page + pixel in the repo.
+2. Get the final Stripe link + portal URL → finish the money loop + footer billing.
+3. Start Phase 2 prospect sourcing (free cold outreach runs parallel to paid ads).
+
+## Note / limitation
+The venture-repo updates above (STATE, ad plan, emails, HUMAN_TASKS, ledger, DECISIONS, this log, creatives) were written in the local clone, but this session's git/GitHub access is scoped to `wireset-web` only — I can't push to `wiresetweb/Fable-Money-Test`. Files delivered to Laz directly; to persist them in the repo, add Fable-Money-Test to the session or paste them in.

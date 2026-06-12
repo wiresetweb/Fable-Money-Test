@@ -1,5 +1,7 @@
 # Base template — electrician / trades, quote tool angle
 
+> **⚠ SUPERSEDED (2026-06-12):** the tool description below uses the old *customer-facing* framing ("customer…instantly sees your price range"), which we dropped — contractors don't want pricing public. Use `cold-first-touch.md` (pain-matched variants, private-builder framing) instead.
+
 **Never sent as-is.** Every send must replace ALL bracketed parts with researched specifics, pass the honesty check (no invented facts), and include the opt-out line. Personalized copies go to `outreach/sent/` with date + outcome.
 
 ---

@@ -34,3 +34,23 @@ Laz chose one-time flat over the site's build+monthly shape. Fastest path to the
 
 ## 9 — 2026-06-11 — Day-0 dark concept archived, not deleted
 The original "schematic industrial" landing page + demo moved to `archive/day0-dark-concept/`. The calculator's logic was ported into the new on-brand demo; the visual concept is kept in case a future client wants that aesthetic.
+
+## 10 — 2026-06-11 — Paid-ad strategy: $100 on a staged Meta test, tool-as-wedge, home-service trades
+Laz directed using the budget on advertising. Full plan in `strategy/ad-plan.md`. Key calls:
+- **Channel = Meta (FB/IG), not Google Search.** For a $100 budget, Meta buys ~100–250 cheap clicks and precise SMB-owner targeting; Google Search would burn the budget in ~10 clicks against agencies bidding up "[trade] website." Google becomes the *next* budget, funded by revenue. (Demand-gen beats demand-capture when the buyer isn't actively searching.)
+- **Wedge offer = the $350/48h tool, not the website.** Impulse price, unique (nobody else advertises it), strongest/most tangible demo. It's a tripwire that earns the right to upsell the website (the bigger sale) in follow-up.
+- **Primary niche = HVAC / electrical / plumbing owner-operators** (1–10 trucks). High job value (so $350 is trivial), visible/observable "call for pricing" pain, matching demos, cleanly targetable.
+- **Spend in two gated tranches: $35 test → $65 scale**, hard ceiling $100. Gate after $35 (CTR ≥1%, CPC ≤~$1.25, ≥1 lead) mirrors `claude.md`'s "don't send harder, fix the message" rule. This overrides the earlier "≤$40 ad test after Day 5" note in the budget.
+- **Funnel points at the existing `/tools/` page** (live demo + form) with UTMs — no new infra needed to launch. Optional fast-follow: a dedicated `/go/quote-tool/` landing page + Meta pixel for the scale phase (I build both in the wireset-web repo).
+- Companion: `outreach/templates/ad-lead-followup.md` (speed-to-lead reply within 1 business hour + 5-email nurture), starter creatives in `strategy/ads/`.
+**Rejected:** Google Search first (too few clicks for the budget); leading with the website (considered purchase, stalls cold traffic); spreading across many niches at once (a $35 test needs one clear audience to read a signal).
+
+## 11 — 2026-06-12 — REPOSITIONING: kill customer-facing pricing; sell tools as private + a broad "automate your busywork" pitch
+Laz caught a real flaw: contractors don't want their prices public, and a posted price becomes a commitment before they've seen the job's wrinkles — the old "customers price their own job on your site" framing would scare exactly the buyers we target.
+**Changes:**
+- **Quote tool reframed as the contractor's PRIVATE quote builder** — punch in the job, price by your rates, customer only sees the quote you choose to send. Concern became the selling point ("your pricing stays private; you stay in control").
+- **Two-landing-page strategy:** `/go/quote-tool/` (specific, internal builder) for trade-targeted ads; **new `/go/custom-tools/`** (broad "tell us your busywork, we build the tool") for mixed audiences + retargeting. Both live (wireset-web PRs #12, #14).
+- **Demo rebuilt twice over** as the private builder, now with a real cost engine: global labor rate + materials markup, per-item labor hours and materials (incl. feet of wire), live recompute (PRs #13, #15).
+- **Creative kit v2:** 21 creatives across the two angles; old "your site quotes for customers" set scrapped (ad-plan §11–14 rewritten).
+- All site surfaces scrubbed of public-pricing implications (homepage, /tools/, blog).
+**Rejected:** keeping the customer-facing framing with caveats (the fear is structural, not cosmetic); pure broad pitch with no specific wedge (broad converts worse on cold traffic — we lead specific, scale broad).

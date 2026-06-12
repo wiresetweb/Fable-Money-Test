@@ -1,35 +1,37 @@
 # STATE
 
-**Day:** 0 (started 2026-06-11)
-**Phase:** 1 — Foundation (Days 0–2), but ~80% pre-met — see below
-**Cash position:** $100.00 of $100.00 remaining (no spend; domain & infra already owned)
+**Day:** 1 of 14 (started 2026-06-11)
+**Phase:** 2 — Demand generation. Assets done; both demand engines built; ads blocked on the Meta account, outreach blocked only on Laz's send.
+**Cash position:** $100.00 of $100.00 remaining (no spend yet). Revenue: $0.
 
-## ⚠ Read this first (major Day-0 correction)
-Wireset Web is an **existing live business**, not a name we invented. wiresetweb.com sells websites to local service businesses (3 tiers, $499–$1,299 build + monthly), has 4 live industry demos, a working contact form, and a live hello@ email. It runs on Cloudflare Worker `wireset-web`, auto-deployed from the `wiresetweb/wireset-web` GitHub repo's `main` branch via Workers Builds. Brand rules live in that repo's `BRAND.md` (navy + amber, system fonts, pill buttons, plain-spoken voice) — **all customer-facing work must follow it**. Full story: DECISIONS.md #6–#9.
+## ⚠ Read this first
+Wireset Web is an **existing live business** — wiresetweb.com sells websites to local service businesses (3 tiers, $499–$1,299 + monthly) plus **$350 / 48-hour custom internal tools**. Cloudflare Worker `wireset-web`, auto-deploys from `wiresetweb/wireset-web` main. Brand: that repo's `BRAND.md`. Story: DECISIONS.md #6–#11.
 
-**The mission is now a hybrid:** add the $350-flat / 48-hour custom internal tool offer as a new service line on the existing site, and sell both (websites AND tools) in outreach.
+## ⚠ Positioning (changed Day 1 — DECISIONS #11)
+**Never pitch customer-facing pricing.** The quote tool is the contractor's **private quote builder** (pricing stays private; they approve every quote). Two ad landing pages, both live: `/go/quote-tool/` (specific) and `/go/custom-tools/` (broad "automate your busywork"). All copy, creatives, and templates follow this.
 
-## Assets in hand
-- Live branded site + 4 website demos + working Web3Forms contact form ✅
-- hello@wiresetweb.com live ✅
-- **Staged & ready to ship** in `wireset-web-changes/` (drop-in files for the wireset-web repo): homepage with Tools section, `/tools/` page, on-brand quote-calculator demo, updated sitemap
-- Local clone of the live site at /tmp/wireset-web (ephemeral — re-clone if container reset: `git clone https://github.com/wiresetweb/wireset-web`)
+## What's live on wiresetweb.com (PRs #5–#15, all merged)
+- Full site: tools line, overhaul, interactive layer, 14-post blog, branded OG/schema/sitemap.
+- **Two ad landing pages** with UTM lead tagging (`source` distinguishes them) — forms live-verified by Laz ✅.
+- **Demo = private quote builder with a real cost engine** (global labor rate + materials markup; per-item hours, materials, feet-of-wire; live recompute): `/demos/tools/quote-calculator/`.
+- **$175 deposit Stripe link live** on `/tools/` ✅.
 
-## Top 3 priorities
-1. **Get `wiresetweb/wireset-web` added to this session** (HUMAN_TASKS #1, BLOCKING) → then I push the staged changes as a branch for Laz's review → merge = live
-2. **Stripe**: $175 deposit/final payment links + fix the footer's placeholder billing-portal URL (HUMAN_TASKS #2, BLOCKING for taking money)
-3. Build tool demos #2 (job tracker) and #3 (booking intake) under `/demos/tools/`
+## Demand engine status
+| Channel | State | Blocking |
+|---|---|---|
+| **Paid ads** | Plan + 21 creatives v2 + placement copy + spend priority done (`strategy/ad-plan.md` §11–14) | Laz: Meta account (HUMAN_TASKS #3) |
+| **Cold outreach** | **61 prospects** w/ observable pains (`strategy/prospects.md`), templates v2 (`outreach/templates/cold-first-touch.md`), **top-10 drafts ready** (`outreach/drafts/2026-06-12-first-batch.md`) | Laz: verify + send (HUMAN_TASKS #4, ~30 min) |
 
-## Blockers
-- wireset-web repo access (Laz — chose to grant it, not yet done)
-- Stripe payment links (Laz)
+## Top 3 priorities (Day 2)
+1. **Send the first 10 outreach emails** (Laz, HUMAN_TASKS #4) — free, ready now, ~30 min.
+2. **Meta ad account → launch $35 Tranche A** (Laz, HUMAN_TASKS #3) — quote-builder ads, elec/plumb/carp → `/go/quote-tool/`.
+3. **Next 10 outreach drafts** from the A-list (agent) + reply handling if any come in (speed-to-lead: `ad-lead-followup.md`).
 
-## Phase gate status
-Phase 1 → 2 gate: site live ✅ (already was) · tools offer visible on site ⏳ (staged, needs repo access + merge) · can accept payment ❌ (Stripe). Phase 2 prospect sourcing can start Day 1 in parallel.
+## Blockers (all on Laz)
+- Meta Business + ad account · First-10 sends · Final-50% Stripe link + portal URL
 
 ## Where things live
-- Offer: `strategy/offer.md` · Pricing: `strategy/pricing.md` (now includes website tiers)
-- Staged site changes: `wireset-web-changes/` (mirrors wireset-web repo paths; see its README)
-- Old dark concept: `archive/day0-dark-concept/` (superseded, kept for reference)
-- Task queue for Laz: `ops/HUMAN_TASKS.md` · Money: `ops/ledger.md`
-- Today's log: `ops/daily/day-00.md`
+- Prospects: `strategy/prospects.md` (61 rows; **re-verify in a browser before any send** — sourced from search snippets) · Drafts: `outreach/drafts/` · Templates: `outreach/templates/cold-first-touch.md` (v2; old base template superseded)
+- Ad plan: `strategy/ad-plan.md` · Creatives: `strategy/ads/` (broad_*, quote_*, parked book_*/order_*) · Ad-lead emails: `outreach/templates/ad-lead-followup.md`
+- Tasks for Laz: `ops/HUMAN_TASKS.md` · Money: `ops/ledger.md` · Logs: `ops/daily/` · Decisions: `DECISIONS.md` (latest #11: repositioning)
+- Container egress note: arbitrary web fetches are blocked (search snippets only); Canva/Web3Forms/image CDNs also blocked. Venture repo can't be pushed from the session — deliver via `git format-patch` → Laz applies with `git am`.
